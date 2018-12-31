@@ -41,11 +41,11 @@ const app = new Vue({
             this.customTweet(this.result);
         },
         tweet: function () {
-            let shareURL =  "https://twitter.com/share?url=https://retoruto-carry.github.io/shindan/index2.html&text=%23" + encodeURIComponent(this.hashtag);
+            let shareURL =  "https://twitter.com/share?url=https://retoruto-carry.github.io/shindan/index3.html&text=%23" + encodeURIComponent(this.hashtag);
             window.open(shareURL);
         },
         customTweet: function (text) {
-            let shareURL =  "https://twitter.com/share?url=https://retoruto-carry.github.io/shindan/index2.html&text=" + encodeURIComponent(text) + "%0a%23" + encodeURIComponent(this.hashtag);
+            let shareURL =  "https://twitter.com/share?url=https://retoruto-carry.github.io/shindan/index3.html&text=" + encodeURIComponent(text) + "%0a%23" + encodeURIComponent(this.hashtag);
             window.open(shareURL);
         },
         replaceLists: function () {
