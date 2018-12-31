@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head> <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name=”author” content="@retoruto_carry">
+        <meta name="description" content="">
+        <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+            <meta property="og:url" content="https://retoruto-carry.github.io/shindan/" />
+            <meta property="og:title" content="おみくじボタン" />
+            <meta property="og:description" content="あなたの2019年の運勢を占います" />
+            <meta property="og:image" content="https://retoruto-carry.github.io/shindan//img/uei.png" />
+            <meta property="og:site_name" content="あなたの2018年の運勢を占います" />
+            <meta property="og:type" content="website" />
+            <meta property="og:locale" content="ja_JP" />
+            <meta property="fb:app_id" content="appIDを入力">
+            <meta property="og:image:width" content="500" /> 
+            <meta property="og:image:height" content="262.5" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@retoruto_carry" />
+
+            <link rel="icon" href="favicon.ico" type="image/x-icon" />
+            <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+            <title>おみくじ ~ あなたの2019年の運勢を占います</title>
+
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+            <link rel="stylesheet" href="css/styles.css">
+            <link rel="stylesheet" href="css/shindan.css">
+            <link rel="stylesheet" href="css/animation.css">
+            <style>
+                img.emoji {
+                    height: 1em;
+                    width: 1em;
+                    margin: 0 .05em 0 .1em;
+                    vertical-align: -0.1em;
+                }
+                .fade-leave-active {
+                      transition: opacity 1.0s;
+                }
+                .fade-enter-active {
+                      transition: opacity .8s;
+                }
+                .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+                      opacity: 0;
+                }
+            </style>
+        </head>
+        <body>
+
+            <div id="app">
+
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container">
+                            <a class="navbar-brand" href="/">
+                                <img src="img/icon.png" width="30" height="30" class="d-inline-block align-top mr-1" alt="Honoka">
+                                れとるときゃりー
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+
+                <div class="container">
+
+                    <div class="text-center">
+
+                        <h1 class="">おみくじ診断ボタン</h1>
+
+                        <p>
+                            あなたの2019年の運勢を占います
+                        </p>
+
+                        <transition name="fade" mode="out-in">
+                            <div v-if="shindanBtnShow" :key="shindanBtnShow">
+                                <p>
+                                    名前を入力
+                                </p>
+                                <p>
+                                    <input v-model="name" placeholder="名無し">
+                                </p>
+                                <p>
+                                    <button style="background-color:#fce5cdl;color:#000000" v-on:click="shindan" class="c-btn big m-3 pulse" type="button">
+                                        占ってもらう
+                                        <img src="./img/uranai.png" height="60px" class="pl-1">
+                                    </button>
+                                </p>
+                                <p>
+                                <button class="btn btn-primary btn-sm mb-1" v-on:click="tweet" role="button" aria-pressed="true"><i class="fab fa-twitter"></i> Tweet</button>
+                                </p>
+                            </div>
+                            <div v-if="result" :key="result">
+                                <div class="card m-4">
+                                    <div class="card-body">
+                                        <p class="mt-5 mb-5">
+                                            {{ result }}
+                                        </p>
+                                        <p class="m-4 mb-2">
+                                            <button class="btn btn-primary btn-sm" v-on:click="tweetResult" role="button" aria-pressed="true"><i class="fab fa-twitter"></i> 結果をTweet</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?11.2"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="./js/bootstrap.min.js"></script>
+            <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            <script type="text/javascript" src="./js/chance.js"></script>
+
+            <script type="text/javascript">
+                $('.bs-component [data-toggle="popover"]').popover();
+                $('.bs-component [data-toggle="tooltip"]').tooltip();
+                twemoji.parse(document.body);
+            </script>
+
+            <script src="./js/shindan3.js"></script>
+
+        </body>
+</html>
+
